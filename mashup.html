@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body {
+      font-family: "Lato", sans-serif;
+    }
+
+    .header {
+      overflow: hidden;
+      background-color: white;
+      padding: 20px 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .header a {
+      float: left;
+      color: black;
+      text-align: center;
+      padding: 12px;
+      text-decoration: none;
+      font-size: 18px; 
+      line-height: 25px;
+      border-radius: 4px;
+    }
+
+    .header a.logo {
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    .header a:hover {
+      background-color: #ddd;
+      color: black;
+    }
+
+    .header a.active {
+      background-color: dodgerblue;
+      color: white;
+    }
+
+    .header-right {
+      float: right;
+    }
+
+    .sidebar {
+      height: 100%;
+      width: 0;
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #e5e5e5;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidebar a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #818181;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #f1f1f1;
+    }
+
+    .sidebar .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    .openbtn {
+      font-size: 20px;
+      cursor: pointer;
+      background-color: grey;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+    }
+
+    .openbtn:hover {
+      background-color: #444;
+    }
+
+    .dropdown-btn {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      font-size: 14px;
+      color: #818181;
+      display: block;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .dropdown-btn:hover {
+      color: #f1f1f1;
+    }
+
+    .active {
+      background-color: green;
+      color: white;
+    }
+
+    .dropdown-container {
+      display: none;
+      background-color: #cccccc;
+      padding-left: 8px;
+      cursor: pointer;
+    }
+
+    .dropdown-container li:hover{
+      color: white;
+    }
+
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+      float: right;
+      padding-right: 8px;
+    }
+
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+      .header a {
+        float: none;
+        display: block;
+        text-align: left;
+      }
+
+      .header-right {
+        float: none;
+      }
+    }
+  </style>
+  <script>
+   function iframeChange() {
+    var buttons = document.querySelector(".dropdown-container");
+    var iframe = document.getElementById('frame');
+    var mySelect = document.getElementById('mySelect');
+
+    buttons.addEventListener("click", function (e) {
+      mySelect.src = e.target.dataset.src;
+      mySelect.id = e.target.dataset.id;
+      mySelect.width = e.target.dataset.width;
+      mySelect.height = e.target.dataset.height;
+      mySelect.title = e.target.dataset.title;
+      iframe.src = e.target.dataset.src;
+      iframe.width = e.target.dataset.width;
+      iframe.height = e.target.dataset.height;
+      iframe.title = e.target.dataset.title;
+    });
+  }
+  window.onload = iframeChange; 
+</script>
+</head>
+<body>
+  <div class="header">
+    <button class="openbtn" onclick="openNav()">☰ Sheets</button>
+    <iframe src='https://192.168.90.240/single/?appid=1ab7d1b9-5a9f-4337-9215-7e1e036625d1&obj=mZSPdH&opt=noanimate%2Cnointeraction&select=clearall' style='border:none;width:1px;height:1px;'></iframe>
+    <div align="right" name="tanggal">
+      <script type='text/javascript'>
+        var months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        var myDays = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jum&#39;at', 'Sabtu'];
+        var date = new Date();
+        var day = date.getDate();
+        var month = date.getMonth();
+        var thisDay = date.getDay(),
+        thisDay = myDays[thisDay];
+        var yy = date.getYear();
+        var year = (yy < 1000) ? yy + 1900 : yy;
+        document.write(thisDay + ', ' + day + ' ' + months[month] + ' ' + year);
+      </script>
+    </div>
+  </div>
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <button id="mySelect" class="dropdown-btn">BCA - SALES 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="mySelect" class="dropdown-container">
+      <li><a id="mySelect" data-src="https://192.168.90.240/single/?appid=1ab7d1b9-5a9f-4337-9215-7e1e036625d1&sheet=83e3821d-2afc-45bd-be16-7d95a1065a8d&opt=currsel" data-width="100%" data-height="550px">DASHBOARD I</a></li>
+      <li><a id="mySelect" data-src="https://192.168.90.240/single/?appid=1ab7d1b9-5a9f-4337-9215-7e1e036625d1&sheet=828499e7-da76-4f1c-aa43-b4accbfbd203&opt=currsel" data-width="100%" data-height="550px">DASHBOARD II</a></li>
+      <li><a id="mySelect" data-src="https://192.168.90.240/single/?appid=1ab7d1b9-5a9f-4337-9215-7e1e036625d1&sheet=89c0893e-d526-4af3-aaf8-68a1d54cb96d&opt=currsel" data-width="100%" data-height="550px">DASHBOARD III</a></li>
+      <li><a id="mySelect" data-src="https://192.168.90.240/single/?appid=1ab7d1b9-5a9f-4337-9215-7e1e036625d1&sheet=7b3fe051-8219-469f-994b-7ea249ee2b73&opt=currsel" data-width="100%" data-height="550px">DASHBOARD IV</a></li>
+    </div>
+    <button id="mySelect" class="dropdown-btn">BCA - MARKETING 
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div id="mySelect" class="dropdown-container">
+      <li><a id="mySelect" data-src="https://192.168.90.240/single/?appid=1ab7d1b9-5a9f-4337-9215-7e1e036625d1&sheet=83e3821d-2afc-45bd-be16-7d95a1065a8d&opt=currsel" data-width="100%" data-height="550px">DASHBOARD I</a></li>
+      <li><a id="mySelect" data-src="https://192.168.90.240/single/?appid=1ab7d1b9-5a9f-4337-9215-7e1e036625d1&sheet=828499e7-da76-4f1c-aa43-b4accbfbd203&opt=currsel" data-width="100%" data-height="550px">DASHBOARD II</a></li>
+      <li><a id="mySelect" data-src="https://192.168.90.240/single/?appid=1ab7d1b9-5a9f-4337-9215-7e1e036625d1&sheet=89c0893e-d526-4af3-aaf8-68a1d54cb96d&opt=currsel" data-width="100%" data-height="550px">DASHBOARD III</a></li>
+      <li><a id="mySelect" data-src="https://192.168.90.240/single/?appid=1ab7d1b9-5a9f-4337-9215-7e1e036625d1&sheet=7b3fe051-8219-469f-994b-7ea249ee2b73&opt=currsel" data-width="100%" data-height="550px">DASHBOARD IV</a></li>
+    </div>
+  </div>
+  <div class="main">
+    <iframe id='frame' frameborder="0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
+    <script>
+      function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+      }
+    </script>
+    <script>
+      /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+      var dropdown = document.getElementsByClassName("dropdown-btn");
+      var i;
+
+      for (i = 0; i < dropdown.length; i++) {
+        dropdown[i].addEventListener("click", function() {
+          this.classList.toggle("active");
+          var dropdownContent = this.nextElementSibling;
+          if (dropdownContent.style.display === "block") {
+            dropdownContent.style.display = "none";
+          } else {
+            dropdownContent.style.display = "block";
+          }
+        });
+      }
+    </script>
+  </body>
+  </html> 
